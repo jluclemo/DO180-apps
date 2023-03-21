@@ -1,0 +1,20 @@
+Chapitre 4 - Labs
+podman pull -q quay.io/redhattraining/nginx:1.17
+podman run -d -p 8080:80 --name official-nginx quay.io/redhattraining/nginx:1.17
+podman exec -it official-nginx /bin/bash
+curl 127.0.0.1:8080
+podman stop official-nginx
+podman commit -a 'jluc' official-nginx do180/mynginx:v1.0-SNAPSHOT
+podman run -d -p 8080:80 --name official-nginx-dev do180/mynginx:v1.0-SNAPSHOT
+podman exec -it official-nginx-dev /bin/bash
+curl 127.0.0.1:8080
+podman stop official-nginx-dev
+podman ps -a
+podman commit -a 'jluc' official-nginx-dev do180/mynginx:v1.0
+podman images
+podman rmi localhost/do180/mynginx:v1.0-SNAPSHOT
+podman images
+podman run -d -p 8280:80 --name my-nginx do180/mynginx:v1.0
+curl 127.0.0.1:8280
+
+
